@@ -45,13 +45,21 @@ public class Queue {
         return first;
     }
 
-    public void insert(Object obj) {
+    public void insert(String obj) {
+        Object object = obj;
+        System.out.println("current size" + queueSize());
+        System.out.println("length" + Queue.length);
         if (queueSize() == Queue.length) {
             newLength();
+            System.out.println("new length created");
         }
-        Queue[assignBot()] = obj;
+        System.out.println(bottom);
+        Queue[bottom] = object;
+        System.out.println(Queue[bottom]);
         queueSize();
+        System.out.println(queueSize());
         assignBot();
+        System.out.println(assignBot());
     }
 
     public boolean isEmpty() {
