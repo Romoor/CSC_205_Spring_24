@@ -1,12 +1,12 @@
 public class Queue {
-    static final int ALLOC = 16;
+    final int ALLOC = 16;
     Object[] Queue;
     int top; // front index
     int bottom;
     int size;
 
     public Queue() {
-        Queue = new Queue[ALLOC];
+        Queue = new Object[ALLOC];
         top = 0;
         bottom = 0;
         size = 0;
@@ -48,7 +48,7 @@ public class Queue {
 
     public void insert(Object obj) {
 
-        if (queueSize() >= Queue.length) {
+        if (queueSize() == Queue.length) {
             newLength();
         }
         bottom++;
@@ -62,18 +62,19 @@ public class Queue {
     }
 
     public String toString() {
-        String string = "Index       Value";
+        String string = "Index       Value\n";
         for (int i = 0; i < queueSize(); i++) {
-            string += i + "     " + Queue[i];
+            string += i + "     " + Queue[i] + "\n";
         }
         return string;
     }
 
     public String toStore() {
-        String string = "Index       Value";
-        for (int i = 0; i < Queue.length; i++) {
-            string += i + "     " + Queue[i];
+        String string = "---top---";
+        for (int i = top - 1; i >= 0; i--) {
+            string += Queue[i] + "\n";
         }
+        string += "--bottom--";
         return string;
     }
 }

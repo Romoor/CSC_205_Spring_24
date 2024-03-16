@@ -5,11 +5,13 @@ public class program4Test {
         Queue inst1 = new Queue();
         Queue inst2 = new Queue();
         Scanner scanner = new Scanner(System.in);
-        int queueChoice = 0;
+        boolean continueLoop = false;
         do {
             System.out.println("Queue Selection");
-            System.out.print("Which queue? Press 1 for queue1 and 2 for queue2, other to quit: ");
-            queueChoice = scanner.nextInt();
+            System.out.print("Which queue? Press 1 for queue1 and 2 for queue2: ");
+            int queueChoice = scanner.nextInt();
+            System.out.println(queueChoice);
+
             Queue queue = new Queue();
             // do {
 
@@ -51,6 +53,7 @@ public class program4Test {
                 case 3:
                     System.out.println("What name (no spaces) would you like to add? ");
                     queue.insert(scanner.next());
+                    System.out.println("insert ran");
                     System.out.println("Current queue: " + queue.toString());
 
                     break;
@@ -70,6 +73,12 @@ public class program4Test {
                 default:
                     break;
             }
-        } while (queueChoice != 1 || queueChoice != 2);
+            System.out.println("Do you want to go again? type 'Y' if yes: ");
+            continueLoop = (scanner.next().equalsIgnoreCase("Y"));
+
+        } while (continueLoop);
+        System.out.println("Goodbye!");
+        scanner.close();
     }
+
 }
