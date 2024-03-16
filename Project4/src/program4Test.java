@@ -31,7 +31,7 @@ public class program4Test {
             System.out.println("Menu");
             System.out.println("1. Create empty Queue");
             System.out.println("2. Delete an Object from the queue");
-            System.out.println("3. Insert an name (no  spaces) into the queue");
+            System.out.println("3. Insert an name into the queue");
             System.out.println("4. Check if Queue is empty");
             System.out.println("5. Display contents of queue");
             System.out.println("6. Diplay whole queue");
@@ -50,8 +50,7 @@ public class program4Test {
                     break;
                 case 3:
                     System.out.println("What name (no spaces) would you like to add? ");
-                    String obj = scanner.next();
-                    queue.insert(obj);
+                    queue.insert(scanner.next());
                     System.out.println("Current queue: " + queue.toString());
 
                     break;

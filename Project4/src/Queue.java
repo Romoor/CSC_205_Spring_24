@@ -3,15 +3,16 @@ public class Queue {
     Object[] Queue;
     int top; // front index
     int bottom;
+    int size;
 
     public Queue() {
         Queue = new Queue[ALLOC];
         top = 0;
         bottom = 0;
+        size = 0;
     }
 
     public int queueSize() {
-        int size = 0;
         for (int index = 0; index < Queue.length; index++) {
             if (Queue[index] != null) {
                 size++;
@@ -28,7 +29,7 @@ public class Queue {
     public Object[] newLength() {
         Object[] newQueue = new Object[Queue.length * 2];
         newQueue = Queue;
-        assignBot();
+        bottom = queueSize() + 1;
         return newQueue;
     }
 
@@ -45,21 +46,15 @@ public class Queue {
         return first;
     }
 
-    public void insert(String obj) {
-        Object object = obj;
-        System.out.println("current size" + queueSize());
-        System.out.println("length" + Queue.length);
-        if (queueSize() == Queue.length) {
+    public void insert(Object obj) {
+
+        if (queueSize() >= Queue.length) {
             newLength();
-            System.out.println("new length created");
         }
-        System.out.println(bottom);
-        Queue[bottom] = object;
-        System.out.println(Queue[bottom]);
-        queueSize();
-        System.out.println(queueSize());
-        assignBot();
-        System.out.println(assignBot());
+        bottom++;
+        Queue[bottom - 1] = obj;
+        size++;
+
     }
 
     public boolean isEmpty() {
