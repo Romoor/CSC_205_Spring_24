@@ -12,69 +12,63 @@ public class Queue {
         size = 0;
     }
 
-    public int queueSize() {
-        for (int index = 0; index < Queue.length; index++) {
-            if (Queue[index] != null) {
-                size++;
-            }
-        }
-        return size;
-    }
-
-    public int assignBot() {
-        bottom = queueSize() + 1;
-        return bottom;
-    }
-
-    public Object[] newLength() {
+    public void newLength() {
         Object[] newQueue = new Object[Queue.length * 2];
-        newQueue = Queue;
-        bottom = queueSize() + 1;
-        return newQueue;
+        for (int i = 0; i < size; i++) {
+            newQueue[i] = Queue[top + i];
+        }
+        Queue = newQueue;
     }
 
     public Object delete() {
+        size--;
         if (isEmpty()) {
             return null;
         }
         Object first = Queue[top];
-        for (int i = 0; i < Queue.length; i++) {
+        for (int i = 0; i < size; i++) {
             Queue[i] = Queue[i + 1];
         }
-        queueSize();
-        assignBot();
+        top++;
         return first;
     }
 
     public void insert(Object obj) {
+        size++;
 
-        if (queueSize() == Queue.length) {
+        if (size == Queue.length) {
             newLength();
         }
+        Queue[bottom] = obj;
         bottom++;
-        Queue[bottom - 1] = obj;
-        size++;
 
     }
 
     public boolean isEmpty() {
-        return (queueSize() == 0);
+        return (size == 0);
     }
 
     public String toString() {
-        String string = "Index       Value\n";
-        for (int i = 0; i < queueSize(); i++) {
-            string += i + "     " + Queue[i] + "\n";
+        String string = "";
+        string += "Index       Value\n";
+        for (int i = 0; i < size; i++) {
+            string += " " + i + "        " + Queue[i] + "\n";
         }
         return string;
     }
 
     public String toStore() {
-        String string = "---top---";
-        for (int i = top - 1; i >= 0; i--) {
-            string += Queue[i] + "\n";
+        String string = "";
+        string += "Index       Value\n";
+        for (int i = 0; i < Queue.length; i++) {
+            Object value = 0;
+            if (Queue[i] == null)
+                value = "null";
+            else
+                value = Queue[i];
+            System.out.println(value);
+            string += " " + i + "         " + value + "\n";
         }
-        string += "--bottom--";
         return string;
     }
 }
