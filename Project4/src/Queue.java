@@ -13,33 +13,48 @@ public class Queue {
     }
 
     public void newLength() {
+        // System.out.println("expand called");
         Object[] newQueue = new Object[Queue.length * 2];
-        for (int i = 0; i < size; i++) {
-            newQueue[i] = Queue[top + i];
+        // System.out.println("size: " + size);
+        for (int i = 0; i < bottom; i++) {
+            newQueue[i] = Queue[i];
+            // System.out.println("queue[" + i + "]:" + newQueue[i]);
         }
         Queue = newQueue;
     }
 
     public Object delete() {
-        size--;
+        // System.out.println("size: " + size);
         if (isEmpty()) {
             return null;
         }
-        Object first = Queue[top];
+        // System.out.println("top: " + top);
+        Object first = Queue[0];
+        // System.out.println("Delete: " + first);
+        size--;
+
         for (int i = 0; i < size; i++) {
             Queue[i] = Queue[i + 1];
         }
-        top++;
+
+        // System.out.println("First: " + Queue[0]);
+        bottom--;
+        // System.out.println("Last: " + Queue[bottom]);
+
         return first;
     }
 
     public void insert(Object obj) {
         size++;
 
-        if (size == Queue.length) {
+        if (bottom >= Queue.length) {
             newLength();
         }
+
         Queue[bottom] = obj;
+        // System.out.println("Insert: " + obj);
+        // System.out.println("First: " + Queue[top]);
+        // System.out.println("Last: " + Queue[bottom]);
         bottom++;
 
     }
@@ -49,16 +64,19 @@ public class Queue {
     }
 
     public String toString() {
+        // System.out.println("Tostring size: " + size);
         String string = "";
         string += "Index       Value\n";
         for (int i = 0; i < size; i++) {
-            string += " " + i + "        " + Queue[i] + "\n";
+            string += " " + (i + 1) + "        " + Queue[i] + "\n";
         }
         return string;
     }
 
     public String toStore() {
         String string = "";
+        // System.out.println("ToSTore size: " + Queue.length);
+
         string += "Index       Value\n";
         for (int i = 0; i < Queue.length; i++) {
             Object value = 0;
