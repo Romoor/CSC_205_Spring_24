@@ -136,7 +136,11 @@ public class program4Test {
         System.out.println("Would you like to play against the computer or another human?");
         System.out.println("1. Computer");
         System.out.println("2. Human");
-
+        int playerChoice = scanner.nextInt();
+        while (playerChoice != 1 && playerChoice != 2) {
+            System.out.print("Invalid choice. Press 1 for computer and 2 for human: ");
+            playerChoice = scanner.nextInt();
+        }
         /** Play game */
         while (numCards > 0) {
 
@@ -144,20 +148,42 @@ public class program4Test {
             // System.out.println("Player 1 hand: " + player1.toString());
             // System.out.println("Player 2 hand: " + player2.toString());
             String property = "";
-            if (isPlayer1) {
-                System.out.println("Player 1's choice!");
-                card1 = (GreekHero) player1.delete();
-                System.out.println("\nPlayer 1 card:\n\t" + card1);
-                property = selectProperty(card1);
-                card2 = (GreekHero) player2.delete();
-                System.out.println("\nPlayer 2 card:\n" + card2 + "\n\n");
+            if (playerChoice == 2) {
+                // vs human
+                if (isPlayer1) {
+                    System.out.println("Player 1's choice!");
+                    card1 = (GreekHero) player1.delete();
+                    System.out.println("\nPlayer 1 card:\n" + card1);
+                    property = selectProperty(card1);
+                    card2 = (GreekHero) player2.delete();
+                    System.out.println("\nPlayer 2 card:\n" + card2 + "\n\n");
+                } else {
+                    System.out.println("Player 2's choice!");
+                    card2 = (GreekHero) player2.delete();
+                    System.out.println("\nPlayer 2 card:\n" + card2 + "\n\n");
+                    property = selectProperty(card2);
+                    card1 = (GreekHero) player1.delete();
+                    System.out.println("\nPlayer 1 card:\n" + card1);
+                }
             } else {
-                System.out.println("Player 2's choice!");
-                card2 = (GreekHero) player2.delete();
-                System.out.println("\nPlayer 2 card:\n\t" + card2 + "\n\n");
-                property = selectProperty(card2);
-                card1 = (GreekHero) player1.delete();
-                System.out.println("\nPlayer 1 card:\n" + card1);
+                // vs computer
+                if (isPlayer1) {
+                    System.out.println("Player 1's choice!");
+                    card1 = (GreekHero) player1.delete();
+                    System.out.println("\nPlayer 1 card:\n" + card1);
+                    property = selectProperty(card1);
+                    card2 = (GreekHero) player2.delete();
+                    System.out.println("\nPlayer 2 card:\n" + card2 + "\n\n");
+                } else {
+                    System.out.println("Computer's choice!");
+                    card1 = (GreekHero) player1.delete();
+                    System.out.println("\nPlayer 1 card:\n" + card1);
+                    card2 = (GreekHero) player2.delete();
+                    System.out.println("\nPlayer 2 card:\n" + card2 + "\n\n");
+                    property = computerProperty(card2);
+                    System.out.println("Property: " + property);
+
+                }
             }
 
             center.insert(card1);
@@ -226,8 +252,9 @@ public class program4Test {
                 if (answer.equalsIgnoreCase("N")) {
                     break;
                 }
-                isPlayer1 = !isPlayer1;
             }
+            isPlayer1 = !isPlayer1;
+
         }
         System.out.println("\nGame over!");
         if (player1.size > player2.size) {
@@ -259,6 +286,13 @@ public class program4Test {
         // select property
         System.out.print("Select your property: ");
         String property = scanner.next();
+        return property;
+    }
+
+    private static String computerProperty(GreekHero card) {
+        String[] alpha = { "a", "b", "c", "d", "e" };
+        int random = new Random().nextInt(5);
+        String property = alpha[random];
         return property;
     }
 
