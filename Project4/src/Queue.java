@@ -68,7 +68,7 @@ public class Queue {
         String string = "";
         string += "Index       Value\n";
         for (int i = 0; i < size; i++) {
-            string += " " + (i + 1) + "        " + Queue[i] + "\n";
+            string += " " + (i + 1) + "             " + Queue[i] + "\n";
         }
         return string;
     }
@@ -84,8 +84,8 @@ public class Queue {
                 value = "null";
             else
                 value = Queue[i];
-            System.out.println(value);
-            string += " " + i + "         " + value + "\n";
+            // System.out.println(value);
+            string += " " + i + "             " + value + "\n";
         }
         return string;
     }

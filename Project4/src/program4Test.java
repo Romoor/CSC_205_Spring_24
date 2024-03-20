@@ -4,11 +4,22 @@ import java.util.Scanner;
 public class program4Test {
 
     public static void main(String[] args) {
-        // call testTools automatically
-        // testTools();
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("What would you like to do?");
+        System.out.println("1. Test tools");
+        System.out.println("2. Play Game");
+        int choice = scanner.nextInt();
+        while (choice != 1 && choice != 2) {
+            System.out.print("Invalid choice. Press 1 for Test tools and 2 for  Play Game: ");
+            choice = scanner.nextInt();
+        }
 
-        // then call playGame automatically
-        playGame();
+        if (choice == 1) {
+            testTools();
+        } else {
+            playGame();
+
+        }
 
     }
 
@@ -147,6 +158,8 @@ public class program4Test {
             System.out.println("\n\n\n------------Round " + round + "------------\n");
             // System.out.println("Player 1 hand: " + player1.toString());
             // System.out.println("Player 2 hand: " + player2.toString());
+            System.out.println("Player 1 hand: " + player1.size + " cards");
+            System.out.println("Player 2 hand: " + player2.size + " cards\n");
             String property = "";
             if (playerChoice == 2) {
                 // vs human
@@ -201,37 +214,20 @@ public class program4Test {
             if (player1Card > player2Card) {
                 System.out.println("Player 1 wins with " + card1.getName() + "!");
                 for (int i = 0; i < size; i++) {
-                    // System.out.println("center size: " + size);
-                    // System.out.println("object:" + object);
                     object = center.delete();
-                    // System.out.println("object:" + object);
                     player1.insert(object);
-                    // System.out.println();
-
                 }
-                // System.out.println("Player 1 hand: " + player1.toString());
-                // System.out.println("Player 2 hand: " + player2.toString());
-                // System.out.println("Center hand: " + center.toString());
 
             } else if (player1Card < player2Card) {
                 System.out.println("Player 2 wins with " + card2.getName() + "!");
                 for (int i = 0; i < size; i++) {
-                    // System.out.println("center size: " + size);
-                    // System.out.println("object:" + object);
                     object = center.delete();
-                    // System.out.println("object:" + object);
                     player2.insert(object);
-                    // System.out.println();
                 }
-                // System.out.println("\n\nPlayer 1 hand: " + player1.toString());
-                // System.out.println("Player 2 hand: " + player2.toString());
-                // System.out.println("Center hand: " + center.toString());
+
             } else {
                 /* In event of Tie */
                 System.out.println("Tie between " + card1.getName() + " and " + card2.getName() + "!");
-                // System.out.println("Player 1 hand: " + player1.toString());
-                // System.out.println("Player 2 hand: " + player2.toString());
-                // System.out.println("Center hand: " + center.toString());
                 isPlayer1 = !isPlayer1;
 
             }
