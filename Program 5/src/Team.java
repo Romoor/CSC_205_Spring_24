@@ -28,6 +28,18 @@ class teamTest {
         }
 
         System.out.print("What do you want to do? ");
+        System.out.println("1. Get number of players on team");
+        System.out.println("2. Get select player informatiom");
+        System.out.println("3. Add a player");
+        System.out.println("4. Remove a player");
+        System.out.println("5. Replace the manager");
+        System.out.println("6. Get team batting average");
+        System.out.println("7. Get team home runs");
+        System.out.println("8. Get team ERA");
+        System.out.println("9. Get team strikeouts");
+        System.out.println("10. Get team salary");
+        System.out.println("11. Get team value");
+
         int answer = scanner.nextInt();
         // Team selectedTeam =;
         switch (answer) {
