@@ -1,11 +1,83 @@
 import java.util.ArrayList;
+import java.util.Scanner;
 
 class teamTest {
     public static void main(String[] args) {
 
         Manager manager = new Manager();
         Team team1 = new Team(manager);
+        Batter batter1 = new Batter();
+        team1.addPlayer(batter1);
+        Batter batter2 = new Batter();
+        team1.addPlayer(batter2);
+        Batter pitcher1 = new Batter();
+        team1.addPlayer(pitcher1);
+        Batter pitcher2 = new Batter();
+        team1.addPlayer(pitcher2);
+
         Team team2 = new Team(manager);
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Team 1 or 2? Select 1 or 2: ");
+        int teamNum = scanner.nextInt();
+        Team selectedTeam = new Team(manager);
+        if (teamNum == 1) {
+            selectedTeam = team1;
+        } else {
+            selectedTeam = team2;
+        }
+
+        System.out.print("What do you want to do? ");
+        int answer = scanner.nextInt();
+        // Team selectedTeam =;
+        switch (answer) {
+            case 1:
+                selectedTeam.getNumPlayers();
+                break;
+            case 2:
+                System.out.print("What is the players name: ");
+                String name = scanner.next();
+                selectedTeam.getPlayer(name);
+                break;
+            case 3:
+                System.out.print("What type of player? 1 for batter 2 for pitcher: ");
+                int typePlayer = scanner.nextInt();
+                if (typePlayer == 1) {
+                    Batter nPlayer = new Batter();
+                    selectedTeam.addPlayer(nPlayer);
+                } else {
+                    Pitcher nPlayer = new Pitcher();
+                    selectedTeam.addPlayer(nPlayer);
+                }
+                break;
+            case 4:
+                System.out.println("What player do you want to remove? ");
+                name = scanner.next();
+                selectedTeam.removePlayer(selectedTeam.getPlayer(name));
+            case 5:
+                selectedTeam.replaceManager(manager);
+                break;
+            case 6:
+                selectedTeam.battingAverage();
+                break;
+            case 7:
+                selectedTeam.homeRuns();
+                break;
+            case 8:
+                selectedTeam.ERA();
+                break;
+            case 9:
+                selectedTeam.strikeouts();
+                break;
+            case 10:
+                selectedTeam.salary();
+                break;
+            case 11:
+                selectedTeam.getValue();
+                break;
+            default:
+                break;
+        }
 
     }
 }
@@ -48,6 +120,7 @@ class Team {
 
             }
         }
+        return null;
     }
 
     public void addPlayer(Player newPlayer) {
