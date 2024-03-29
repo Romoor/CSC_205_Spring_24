@@ -3,93 +3,152 @@ import java.util.Scanner;
 
 class teamTest {
     public static void main(String[] args) {
+        System.out.println("\nTeam Program");
+        System.out.println("Make and change  a baseball team\n");
 
-        Manager manager = new Manager();
+        Manager manager = new Manager("Jake Manajer", 75000, 9, 75, 103);
         Team team1 = new Team(manager);
-        Batter batter1 = new Batter();
+        Batter batter1 = new Batter("Lewis Radler", 60000, 3, 15, 60, 7, 34);
         team1.addPlayer(batter1);
-        Batter batter2 = new Batter();
+        Batter batter2 = new Batter("Rodney Mack", 90000, 7, 42, 231, 23, 172);
         team1.addPlayer(batter2);
-        Batter pitcher1 = new Batter();
+        Pitcher pitcher1 = new Pitcher("Paul Gradney", 82000, 6, 30, 120, 18, 49);
         team1.addPlayer(pitcher1);
-        Batter pitcher2 = new Batter();
+        Pitcher pitcher2 = new Pitcher("Mitch Gradney", 82000, 6, 32, 122, 20, 51);
         team1.addPlayer(pitcher2);
 
         Team team2 = new Team(manager);
         Scanner scanner = new Scanner(System.in);
+        Boolean quitLoop = false;
+        while (!quitLoop) {
+            System.out.print("Team 1 or 2? Select 1 or 2: ");
+            int teamNum = scanner.nextInt();
+            Team selectedTeam = new Team(manager);
+            if (teamNum == 1) {
+                selectedTeam = team1;
+            } else {
+                selectedTeam = team2;
+            }
 
-        System.out.print("Team 1 or 2? Select 1 or 2: ");
-        int teamNum = scanner.nextInt();
-        Team selectedTeam = new Team(manager);
-        if (teamNum == 1) {
-            selectedTeam = team1;
-        } else {
-            selectedTeam = team2;
+            System.out.println("What do you want to do? ");
+            System.out.println("1. Get number of players on team");
+            System.out.println("2. Get select player informatiom");
+            System.out.println("3. Add a player");
+            System.out.println("4. Remove a player");
+            System.out.println("5. Replace the manager");
+            System.out.println("6. Get team batting average");
+            System.out.println("7. Get team home runs");
+            System.out.println("8. Get team ERA");
+            System.out.println("9. Get team strikeouts");
+            System.out.println("10. Get team salary");
+            System.out.println("11. Get team value");
+            System.out.println("12. Quit");
+
+            int answer = scanner.nextInt();
+            // Team selectedTeam =;
+            switch (answer) {
+                case 1:
+                    System.out.println("Number of Players: " + selectedTeam.getNumPlayers());
+                    break;
+                case 2:
+                    System.out.print("What is the player's full name: ");
+                    String name = scanner.next();
+                    Player gotPlayer = selectedTeam.getPlayer(name);
+                    if (gotPlayer == null) {
+                        System.out.println("That player is not a memeber of the team");
+                    } else {
+                        System.out.println(gotPlayer);
+                    }
+                    break;
+                case 3:
+                    System.out.print("What type of player? 1 for batter 2 for pitcher: ");
+                    int typePlayer = scanner.nextInt();
+                    if (typePlayer == 1) {
+                        System.out.print("Name: ");
+                        String newName = scanner.nextLine();
+                        System.out.print("Salary: ");
+                        double salary = scanner.nextDouble();
+                        System.out.print("Years: ");
+                        int years = scanner.nextInt();
+                        System.out.print("Games: ");
+                        int games = scanner.nextInt();
+                        System.out.print("Bats: ");
+                        int bats = scanner.nextInt();
+                        System.out.print("Home Runs: ");
+                        int homeRuns = scanner.nextInt();
+                        System.out.print("Hits: ");
+                        int hits = scanner.nextInt();
+                        Batter nPlayer = new Batter(newName, salary, years, games, bats, homeRuns, hits);
+                        selectedTeam.addPlayer(nPlayer);
+                    } else {
+                        System.out.print("Name: ");
+                        String newName = scanner.nextLine();
+                        System.out.print("Salary: ");
+                        double salary = scanner.nextDouble();
+                        System.out.print("Years: ");
+                        int years = scanner.nextInt();
+                        System.out.print("Games: ");
+                        int games = scanner.nextInt();
+                        System.out.print("Innings: ");
+                        int innings = scanner.nextInt();
+                        System.out.print("Earned Runs: ");
+                        int earnedRuns = scanner.nextInt();
+                        System.out.print("Strikeouts: ");
+                        int strikeouts = scanner.nextInt();
+                        Pitcher nPlayer = new Pitcher(newName, salary, years, games, innings, earnedRuns,
+                                strikeouts);
+                        selectedTeam.addPlayer(nPlayer);
+                    }
+                    break;
+                case 4:
+                    System.out.println("What player do you want to remove? ");
+                    name = scanner.next();
+                    selectedTeam.removePlayer(selectedTeam.getPlayer(name));
+                    // add plaer tostring?
+                    System.out.println("Removed " + selectedTeam.getPlayer(name));
+                case 5:
+                    System.out.print("Name: ");
+                    String newName = scanner.nextLine();
+                    System.out.print("Salary: ");
+                    double salary = scanner.nextDouble();
+                    System.out.print("Years: ");
+                    int years = scanner.nextInt();
+                    System.out.print("Career Wins: ");
+                    int careerWins = scanner.nextInt();
+                    System.out.print("Career Games: ");
+                    int careerGames = scanner.nextInt();
+
+                    Manager newManager = new Manager(newName, salary, years, careerWins, careerGames);
+                    selectedTeam.replaceManager(newManager);
+                    System.out.println("New manager:" + selectedTeam.getManager());
+                    break;
+                case 6:
+                    System.out.println("Batting Average: " + selectedTeam.battingAverage());
+                    break;
+                case 7:
+                    System.out.println("Home Runs: " + selectedTeam.homeRuns());
+                    break;
+                case 8:
+                    System.out.println("ERA: " + selectedTeam.ERA());
+                    break;
+                case 9:
+                    System.out.println("Strikeouts: " + selectedTeam.strikeouts());
+                    break;
+                case 10:
+                    System.out.println("Salary: " + selectedTeam.salary());
+                    break;
+                case 11:
+                    System.out.println("Value: " + selectedTeam.getValue());
+                    break;
+                case 12:
+                    quitLoop = true;
+                    break;
+                default:
+                    break;
+
+            }
         }
-
-        System.out.print("What do you want to do? ");
-        System.out.println("1. Get number of players on team");
-        System.out.println("2. Get select player informatiom");
-        System.out.println("3. Add a player");
-        System.out.println("4. Remove a player");
-        System.out.println("5. Replace the manager");
-        System.out.println("6. Get team batting average");
-        System.out.println("7. Get team home runs");
-        System.out.println("8. Get team ERA");
-        System.out.println("9. Get team strikeouts");
-        System.out.println("10. Get team salary");
-        System.out.println("11. Get team value");
-
-        int answer = scanner.nextInt();
-        // Team selectedTeam =;
-        switch (answer) {
-            case 1:
-                selectedTeam.getNumPlayers();
-                break;
-            case 2:
-                System.out.print("What is the players name: ");
-                String name = scanner.next();
-                selectedTeam.getPlayer(name);
-                break;
-            case 3:
-                System.out.print("What type of player? 1 for batter 2 for pitcher: ");
-                int typePlayer = scanner.nextInt();
-                if (typePlayer == 1) {
-                    Batter nPlayer = new Batter();
-                    selectedTeam.addPlayer(nPlayer);
-                } else {
-                    Pitcher nPlayer = new Pitcher();
-                    selectedTeam.addPlayer(nPlayer);
-                }
-                break;
-            case 4:
-                System.out.println("What player do you want to remove? ");
-                name = scanner.next();
-                selectedTeam.removePlayer(selectedTeam.getPlayer(name));
-            case 5:
-                selectedTeam.replaceManager(manager);
-                break;
-            case 6:
-                selectedTeam.battingAverage();
-                break;
-            case 7:
-                selectedTeam.homeRuns();
-                break;
-            case 8:
-                selectedTeam.ERA();
-                break;
-            case 9:
-                selectedTeam.strikeouts();
-                break;
-            case 10:
-                selectedTeam.salary();
-                break;
-            case 11:
-                selectedTeam.getValue();
-                break;
-            default:
-                break;
-        }
+        System.out.println("Goodbye!");
 
     }
 }
@@ -125,12 +184,16 @@ class Team {
     }
 
     public Player getPlayer(String name) {
-        for (int i = 0; i < getNumPlayers(); i++) {
-            String playerName = players.get(i).getName();
+        String playerName = "";
+        int i = 0;
+        while (!name.equals(playerName) && i < players.size()) {
+            playerName = players.get(i).getName();
+            System.out.println("Player name loop: " + playerName);
             if (name.equals(playerName)) {
+                System.out.println("Names equal");
                 return players.get(i);
-
             }
+            i++;
         }
         return null;
     }
@@ -151,13 +214,15 @@ class Team {
     public double battingAverage() {
         int totalHits = 0;
         for (int i = 0; i < getNumPlayers(); i++) {
+            System.out.println("total hits loop called");
             totalHits += players.get(i).hits();
         }
+        System.out.println("Total hits: " + totalHits);
         int totalBats = 0;
         for (int i = 0; i < getNumPlayers(); i++) {
             totalBats += players.get(i).bats();
         }
-
+        System.out.println("Total bats: " + totalBats);
         return (double) totalHits / totalBats;
     }
 
@@ -220,6 +285,12 @@ abstract class Employee {
     double salary;
     int years;
 
+    public Employee(String _name, double _salary, int _years) {
+        name = _name;
+        salary = _salary;
+        years = _years;
+    }
+
     public String getName() {
         return name;
     }
@@ -241,10 +312,10 @@ class Manager extends Employee {
     int careerWins;
     int careerGames;
 
-    public Manager() {
-        // super(name);
-        careerWins = 0;
-        careerGames = 0;
+    public Manager(String _name, double _salary, int _years, int _careerWins, int _careerGames) {
+        super(_name, _salary, _years);
+        careerWins = _careerWins;
+        careerGames = _careerGames;
     }
 
     public int getWins() {
@@ -272,6 +343,11 @@ class Manager extends Employee {
 
 abstract class Player extends Employee {
     int numGames;
+
+    public Player(String _name, double _salary, int _years, int _numGames) {
+        super(_name, _salary, _years);
+        numGames = _numGames;
+    }
 
     public int getGames() {
         return numGames;
@@ -317,10 +393,12 @@ class Pitcher extends Player {
     int earnedRuns;
     int strikeouts;
 
-    public Pitcher() {
-        innings = 0;
-        earnedRuns = 0;
-        strikeouts = 0;
+    public Pitcher(String _name, double _salary, int _years, int _numGames, int _innings, int _earnedRuns,
+            int _strikeouts) {
+        super(_name, _salary, _years, _numGames);
+        innings = _innings;
+        earnedRuns = _earnedRuns;
+        strikeouts = _strikeouts;
     }
 
     public int getInnings() {
@@ -363,10 +441,12 @@ class Batter extends Player {
     int homeRuns;
     int hits;
 
-    public Batter() {
-        bats = 0;
-        homeRuns = 0;
-        hits = 0;
+    public Batter(String _name, double _salary, int _years, int _numGames, int _bats, int _homeRuns,
+            int _hits) {
+        super(_name, _salary, _years, _numGames);
+        bats = _bats;
+        homeRuns = _homeRuns;
+        hits = _hits;
     }
 
     public void yearlyUpdate(int numGames, int _bats, int _homeRuns, int _hits) {
@@ -374,6 +454,26 @@ class Batter extends Player {
         bats += _bats;
         homeRuns += _homeRuns;
         hits += _hits;
+    }
+
+    public int years() {
+        return years;
+    }
+
+    public int numGames() {
+        return numGames;
+    }
+
+    public int bats() {
+        return bats;
+    }
+
+    public int homeRuns() {
+        return homeRuns;
+    }
+
+    public int hits() {
+        return hits;
     }
 
     public double battingAverage() {
