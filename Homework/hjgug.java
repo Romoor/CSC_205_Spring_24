@@ -1,3 +1,5 @@
+package Homework;
+
 public class hjgug {
     public static void main(String[] args) {
 

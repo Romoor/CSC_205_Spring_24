@@ -1,9 +1,15 @@
-package Project6;
+package Homework;
 
 public class table {
     private Node root;
 
-    public Sortable search(Sortable item, Node current) {
+    public void search() {
+        Node newNode = new Node();
+        newNode.data = search(root);
+        root = newNode;
+    }
+
+    public Sortable search(Sortable item) {
         int same;
         same = item.compareTo(current.data);
         if (same == 0)

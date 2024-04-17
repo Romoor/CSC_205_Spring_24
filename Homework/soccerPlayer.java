@@ -1,3 +1,5 @@
+package Homework;
+
 public class soccerPlayer {
     private String name;
     private String team;

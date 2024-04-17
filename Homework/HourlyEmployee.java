@@ -1,3 +1,5 @@
+package Homework;
+
 public class HourlyEmployee extends Employee {
     private double hourRate;
     private int totalHour;

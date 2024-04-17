@@ -1,3 +1,5 @@
+package Homework;
+
 public class ComissionedEmployee extends Employee {
     double totalSales;
 

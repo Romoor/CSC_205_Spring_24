@@ -1,3 +1,5 @@
+package Homework;
+
 public class List {
     private static final int ALLOC = 50;
     String[] list;

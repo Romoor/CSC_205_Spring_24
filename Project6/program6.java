@@ -89,6 +89,7 @@ public class program6 {
             }
         }
         System.out.println("Goodbye!");
+        scanner.close();
     }
 }
 

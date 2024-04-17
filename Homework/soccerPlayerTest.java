@@ -1,3 +1,5 @@
+package Homework;
+
 public class soccerPlayerTest {
     public static void main(String[] args) {
         soccerPlayer Ronaldo = new soccerPlayer("Cristiano Ronaldo", "Manchester United");
