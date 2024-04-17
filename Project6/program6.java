@@ -149,44 +149,77 @@ class List {
     }
 
     public void deleteItem(Object item) {
-        Link nLink = new Link();
-        nLink.data = item;
-        nLink.next = null;
-        int index = 0;
-        for (Link curLink = head; curLink != null; curLink = curLink.next) {
-            System.out.println("currlink: " + curLink.data);
-            index = curLink.getIndex(curLink);
-            System.out.println("curlink value: " + getLink(index).data);
-            System.out.println("currlink: " + curLink.data);
-            if (curLink.data.equals(nLink.data)) {
-                System.out.println("curlink value " + getLink(index).data
-                        + " equals 1");
-                Link prevLink = getLink(index - 1);
-                if (index < numMembers) {
-                    Link nextLink = curLink.next;
-                    if (numMembers == 1) {
-                        System.out.println("1 in list");
-                        head = null;
-                    } else if (prevLink == null) {
-                        System.out.println("item was first");
-                        System.out.println("next link :" + nextLink.data);
-                        head = nextLink;
-                        System.out.println("head: " + head.data);
-                        System.out.println("currlink: " + curLink.data);
-
-                    } else {
-                        System.out.println("Prev link :" + prevLink.data);
-                        System.out.println("next link :" + nextLink.data);
-                        System.out.println("assign next to nextLink");
-                        prevLink.next = nextLink;
-                    }
-                } else {
-                    prevLink.next = null;
-                }
-
-                numMembers--;
-            }
+        if (numMembers == 0) {
+            return;
         }
+        Link prevLink = head;
+        Link curLink = head;
+        Link nextLink = curLink.next;
+        int length = numMembers;
+        for (int i = 0; i < length; i++) {
+            System.out.println("currlink: " + curLink.data);
+            if (curLink.data.equals(item)) {
+                System.out.println("\tcurrlink: " + curLink.data + " equals " + item);
+                if (i == 0) {
+                    head = nextLink;
+                } else {
+                    System.out.println("\t\tprevlink: " + prevLink.data);
+                    prevLink.next = nextLink;
+                    if (nextLink != null) {
+                        System.out.println("\t\tnextlink: " + nextLink.data);
+                    }
+                }
+                numMembers--;
+
+            }
+            if (nextLink == null) {
+                break;
+            }
+            prevLink = curLink;
+            curLink = curLink.next;
+            nextLink = curLink.next;
+        }
+
+        /*
+         * Link nLink = new Link();
+         * nLink.data = item;
+         * nLink.next = null;
+         * int index = 0;
+         * for (Link curLink = head; curLink != null; curLink = curLink.next) {
+         * System.out.println("currlink: " + curLink.data);
+         * index = curLink.getIndex(curLink);
+         * System.out.println("curlink value: " + getLink(index).data);
+         * System.out.println("currlink: " + curLink.data);
+         * if (curLink.data.equals(nLink.data)) {
+         * System.out.println("curlink value " + getLink(index).data
+         * + " equals 1");
+         * Link prevLink = getLink(index - 1);
+         * if (index < numMembers) {
+         * Link nextLink = curLink.next;
+         * if (numMembers == 1) {
+         * System.out.println("1 in list");
+         * head = null;
+         * } else if (prevLink == null) {
+         * System.out.println("item was first");
+         * System.out.println("next link :" + nextLink.data);
+         * head = nextLink;
+         * System.out.println("head: " + head.data);
+         * System.out.println("currlink: " + curLink.data);
+         * 
+         * } else {
+         * System.out.println("Prev link :" + prevLink.data);
+         * System.out.println("next link :" + nextLink.data);
+         * System.out.println("assign next to nextLink");
+         * prevLink.next = nextLink;
+         * }
+         * } else {
+         * prevLink.next = null;
+         * }
+         * 
+         * numMembers--;
+         * }
+         * }
+         */
 
     }
 
